@@ -1,0 +1,32 @@
+<div class="panel">
+  <div class="panel-heading">
+    Account
+    <%= link_to edit_member_account_path(@member), class: 'pull-right' do %>
+      <i class="fa fa-edit"></i>
+    <% end %>
+  </div>
+  <div class="panel-body bio-graph-info">
+    <div class="row">
+      <div class="bio-row">
+        <p>
+          <span>Status:</span>
+          <span class="label" style="background: <%= @member.account.color %>; padding: 5px 10px">
+            <%= @member.account.status %>
+          </span>
+        </p>
+      </div>
+      <div class="bio-row">
+        <p>
+          <span>Fecha de Vencimiento:</span>
+          <%= l @member.account_payment_due_date %>
+        </p>
+      </div>
+      <div class="bio-row">
+        <p>
+          <span>Balance:</span>
+          <%= number_to_currency(@member.account_balance, negative_format: "(%u%n)") %>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

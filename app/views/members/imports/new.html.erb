@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col-lg-12">
+    <div class="panel">
+      <div class="panel-heading">
+        Importar Miembros
+      </div>
+      <div class="panel-body">
+        <%= form_for @member_import, url: member_import_path(@member_import), multipart: true, html: { class: 'form-horizontal' } do |f| %>
+          <%= render 'layouts/shared/errors', object: @member_import %>
+          <div class="form-group">
+            <%= f.label :file, class: 'col-lg-2 col-sm-2 control-label' %>
+            <div class="col-lg-10">
+              <%= f.file_field :file %>
+            </div>
+          </div>
+          <br/>
+          <%= f.submit 'Importar', class: 'btn btn-primary' %>
+          <%= link_to 'Cancelar', members_path, class: 'btn' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

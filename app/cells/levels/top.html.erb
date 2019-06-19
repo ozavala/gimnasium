@@ -1,0 +1,35 @@
+<div class="col-lg-4">
+  <div class="panel">
+    <div class="panel-heading">
+      <%= link_to 'Niveles Top 10', levels_path %>
+    </div>
+    <div class="panel-body">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th class="col-lg-6">Nombre</th>
+            <th>Color</th>
+            <th>Miembros</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @levels.each do |level| %>
+            <tr>
+              <td>
+                <%= link_to level.name, edit_level_path(level) %>
+              </td>
+              <td>
+                <span class="label" style="background: <%= level.color %>; padding: 5px 30px">
+                  &nbsp;
+                </span>
+              </td>
+              <td>
+                <%= level.members_count %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -20,7 +20,7 @@ class Report::AccountReport
   end
 
   def name
-    "#{@type.to_s.titleize} Accounts"
+    "#{@type.to_s.titleize} Cuentas"
   end
 
   def to_csv

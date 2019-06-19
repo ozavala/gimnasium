@@ -1,0 +1,17 @@
+<%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "form-signin" }) do |f| %>
+  <h2 class="form-signin-heading">login</h2>
+  <div class="login-wrap">
+    <%= f.text_field :email, autofocus: "", placeholder: "Email", class: "form-control" %>
+    <%= f.password_field :password, placeholder: "Contraseña", class: "form-control" %>
+    <% if devise_mapping.rememberable? %>
+      <label class="checkbox">
+        <%= f.check_box :remember_me, class: "checkbox" %>
+        Recordarme
+      </label>
+    <% end %>
+    <span class="pull-left">
+      <%= link_to "¿Olvidó la contraseña?", new_user_password_path %>
+    </span>
+    <%= f.submit "Sign In", class: "button btn btn-lg btn-login btn-block" %>
+  </div>
+<% end %>

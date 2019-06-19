@@ -1,0 +1,16 @@
+<% if object.errors.any? %>
+  <div class="error_explanation">
+    <div class="alert alert-block alert-danger">
+      <button class="close close-sm" data-dismiss="alert" type="button">
+        <i class="fa fa-remove"></i>
+      </button>
+      <ul>
+        <% object.errors.full_messages.each do |msg| %>
+          <li>
+            <%= msg %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta/>
+    <meta/>
+    <meta/>
+    <%= favicon_link_tag 'favicon.ico' %>
+    <title>
+      <%= content_for?(:title) ? yield(:title) : 'StudioJoy' %>
+    </title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag 'application' %>
+  </head>
+  <body>
+    <section id="container">
+      <div class="login-body">
+        <div class="container">
+          <%= render 'layouts/shared/messages' %>
+          <%= yield %>
+        </div>
+      </div>
+    </section>
+  </body>
+  <!-- body end
+  -->
+  <!-- js placed at the end of the document so the pages load faster
+  -->
+  <%= javascript_include_tag 'application' %>
+</html>

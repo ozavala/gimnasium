@@ -6,7 +6,7 @@ module Report
       end
 
       def name
-        "#{month_name} Birthdays"
+        "#{month_name} Cumpleaños"
       end
 
       def to_csv

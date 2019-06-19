@@ -1,0 +1,93 @@
+<aside>
+  <div class="nav-collapse" id="sidebar">
+    <!-- sidebar menu start
+    -->
+    <ul class="sidebar-menu" id="nav-accordion">
+      <li>
+        <%= link_to '/', class: "#{'active' if controller?('dashboard')}" do %>
+          <i class="fa fa-dashboard"></i>
+          <span>Panel</span>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to members_path, class: "#{'active' if members_controller?}" do %>
+          <i class="fa fa-user"></i>
+          <span>Miembros</span>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to classes_path, class: "#{'active' if controller?('classes')}" do %>
+          <i class="fa fa-group"></i>
+          <span>Clases</span>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to levels_path, class: "#{'active' if controller?('levels')}" do %>
+          <i class="fa fa-list"></i>
+          <span>Niveles</span>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to sources_path, class: "#{'active' if controller?('sources')}" do %>
+          <i class="fa fa-filter"></i>
+          <span>Referencias</span>
+        <% end %>
+      </li>
+      <li class="sub-menu">
+        <%= link_to '#', class: "#{'active' if reports_controller?}" do %>
+          <i class="fa fa-bar-chart-o"></i>
+          <span>Reportes</span>
+        <% end %>
+        <ul class="sub">
+          <li class="sub-menu">
+            <%= link_to 'Miembros', '#', {class: "#{'active' if controller?('reports/members/recent') || controller?('reports/members/birthdays')}"} %>
+            <ul class="sub">
+              <li class="sub-menu">
+                <li class="<%= 'active' if controller?('reports/members/recent') && action?('index') %>">
+                  <%= link_to 'Reciente', reports_members_recent_path %>
+                </li>
+                <li class="<%= 'active' if controller?('reports/members/birthdays') && action?('index') %>">
+                  <%= link_to 'Cumpleaños', reports_members_birthdays_path %>
+                </li>
+              </li>
+            </ul>
+          </li>
+          <li class="<%= 'active' if controller?('reports/attendance') && action?('index') %>">
+            <%= link_to 'Asistencia', reports_attendance_path %>
+          </li>
+          <li class="<%= 'active' if controller?('reports/accounts') && action?('index') %>">
+            <%= link_to 'Cuentas', reports_accounts_path %>
+          </li>
+          <li class="<%= 'active' if controller?('reports/payments') && action?('index') %>">
+            <%= link_to 'Pagos', reports_payments_path %>
+          </li>
+        </ul>
+      </li>
+      <li class="sub-menu">
+        <%= link_to '#', class: "#{'active' if settings_controller?}" do %>
+          <i class="fa fa-cog"></i>
+          <span>Configuraciones</span>
+        <% end %>
+        <ul class="sub">
+          <li class="<%= 'active' if controller?('settings/studios') %>">
+            <%= link_to 'Gimnasio', edit_settings_studio_path %>
+          </li>
+          <li class="<%= 'active' if controller?('settings/members') %>">
+            <%= link_to 'Miembros', edit_settings_member_path %>
+          </li>
+          <li class="<%= 'active' if controller?('settings/users') %>">
+            <%= link_to 'Usuarios', settings_users_path %>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <%= link_to destroy_user_session_path, method: :delete do %>
+          <i class="fa fa-sign-out"></i>
+          <span>Logout</span>
+        <% end %>
+      </li>
+    </ul>
+    <!-- sidebar menu end
+    -->
+  </div>
+</aside>

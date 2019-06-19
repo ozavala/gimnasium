@@ -49,6 +49,7 @@ group :development, :test do
   gem 'guard', '~> 2.2.4'
   gem 'rb-fsevent'
   gem 'figaro'
+  gem 'rails-i18n'
 end
 
 group :development do

@@ -1,0 +1,88 @@
+<div class="row">
+  <div class="col-lg-12">
+    <div class="panel">
+      <div class="panel-heading">
+        <div class="month pull-left">
+          <% unless @report.january? %>
+            <%= link_to reports_attendance_path(month: @report.prev_month, year: @report.year) do %>
+              <div class="i fa fa-chevron-left"></div>
+            <% end %>
+            &nbsp;
+          <% end %>
+          <%= @report.name %>
+          <% unless @report.december? %>
+            &nbsp;
+            <%= link_to reports_attendance_path(month: @report.next_month, year: @report.year) do %>
+              <div class="i fa fa-chevron-right"></div>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="year pull-right">
+          <% unless @report.first_year? %>
+            <%= link_to reports_attendance_path(month: @report.month, year: @report.prev_year) do %>
+              <div class="i fa fa-chevron-left"></div>
+            <% end %>
+            &nbsp;
+          <% end %>
+          <%= @report.year %>
+          <% unless @report.current_year? %>
+            &nbsp;
+            <%= link_to reports_attendance_path(month: @report.month, year: @report.next_year) do %>
+              <div class="i fa fa-chevron-right"></div>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+      <div class="panel-body">
+        <% unless @members.empty? %>
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Nivel</th>
+                <th>Ultima Visita</th>
+                <th>Visitas</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @members.each do |member| %>
+                <tr>
+                  <td>
+                    <%= link_to member.first_name, member %>
+                  </td>
+                  <td>
+                    <%= link_to member.last_name, member %>
+                  </td>
+                  <td>
+                    <% unless member.level.nil? %>
+                      <span class="label" style="background: <%= member.level.color %>">
+                        <%= member.level.name %>
+                      </span>
+                    <% end %>
+                  </td>
+                  <td>
+                    <%= l member.visit_date.to_date %>
+                  </td>
+                  <td>
+                    <%= link_to member.visits_count, member_visits_path(member) %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+          <div class="pull-right">
+            <%= link_to reports_attendance_export_path(month: @report.month, year: @report.year) do %>
+              <i class="fa fa-cloud-download"></i>
+              Download
+            <% end %>
+          </div>
+          <div class="text-center">
+            <%= paginate @members %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

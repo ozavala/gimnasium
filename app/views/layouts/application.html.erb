@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta/>
+    <meta/>
+    <meta/>
+    <%= favicon_link_tag 'favicon.ico' %>
+    <title>
+      <%= content_for?(:title) ? yield(:title) : 'StudioJoy' %>
+    </title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag 'application' %>
+  </head>
+  <body>
+    <section id="container">
+      <!-- header start
+      -->
+      <header class="header white-bg">
+        <div class="sidebar-toggle-box">
+          <div class="fa fa-bars tooltips" data-original-title="Toggle Navigation" data-placement="right"></div>
+        </div>
+        <!-- logo start
+        -->
+        <a class="logo" href="#">
+          Round One
+          <span>
+            <i class="fa fa-chevron-right"></i>
+            <%= current_studio.name %>
+          </span>
+        </a>
+        <!-- logo end
+        -->
+        <%= render 'layouts/shared/header' %>
+      </header>
+      <!-- header end
+      -->
+      <!-- sidebar start
+      -->
+      <%= render 'layouts/shared/sidebar' %>
+      <!-- sidebar end
+      -->
+      <!-- main content start
+      -->
+      <section id="main-content">
+        <section class="wrapper">
+          <%= render 'layouts/shared/messages' %>
+          <%= yield %>
+        </section>
+      </section>
+    </section>
+    <!-- section container end
+    -->
+  </body>
+  <!-- body end
+  -->
+  <!-- js placed at the end of the document so the pages load faster
+  -->
+  <%= javascript_include_tag 'application' %>
+  <%= yield :js %>
+</html>

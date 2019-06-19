@@ -1,0 +1,28 @@
+<%= form_for [@member, @visit], html: { class: 'form-horizontal' } do |f| %>
+  <%= render 'layouts/shared/errors', object: @visit %>
+  <div class="form-group">
+    <%= f.label :visit_date, 'Date', class: 'col-lg-2 col-sm-2 control-label' %>
+    <div class="col-lg-10">
+      <div class="input-group">
+        <span class="input-group-addon">
+          <i class="fa fa-calendar"></i>
+        </span>
+        <%= f.text_field :visit_date, "placeholder data-mask" => "99/99/9999", "data-date-format" => "mm/dd/yyyy", class: 'form-control datepicker default-date-picker', value: l(@visit.visit_date || Date.current) %>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :klass_id, 'Class', class: 'col-lg-2 col-sm-2 control-label' %>
+    <div class="col-lg-10">
+      <div class="input-group">
+        <%= f.select :klass_id, grouped_options_for_select([['Today', current_studio.klasses.today.map {|k| [k.name_and_time, k.id] } ], ['All', current_studio.klasses.map {|k| [k.name_day_and_time, k.id] } ]]) %>
+      </div>
+    </div>
+  </div>
+  <br/>
+  <%= f.submit nil, class: 'btn btn-primary' %>
+  <% if action?('edit') %>
+    <%= link_to 'Remover Visita', member_visit_path(@member, @visit), confirm: '¿Está seguro?', method: 'delete', class: 'btn btn-danger' %>
+  <% end %>
+  <%= link_to 'Cancelar', member_visits_path(@member), class: 'btn' %>
+<% end %>

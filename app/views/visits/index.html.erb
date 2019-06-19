@@ -1,0 +1,26 @@
+<%= content_for :js do %>
+  <%= javascript_include_tag 'visits' %>
+<% end %>
+<div class="row">
+  <div class="col-lg-3">
+    <%= render 'members/nav' %>
+  </div>
+  <div class="col-lg-9">
+    <div class="panel">
+      <div class="panel-heading">
+        Asistencia
+      </div>
+      <div class="panel-body">
+        <div class="has-toolbar fc" id="calendar"></div>
+        <br/>
+        <div class="pull-right">
+          <%= link_to export_member_visits_path @member do %>
+            <i class="fa fa-cloud-download"></i>
+            Download
+          <% end %>
+        </div>
+        <%= link_to 'New Visit', new_member_visit_path(@member), class: 'btn btn-primary' %>
+      </div>
+    </div>
+  </div>
+</div>

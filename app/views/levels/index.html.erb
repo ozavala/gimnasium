@@ -1,0 +1,55 @@
+<div class="row">
+  <div class="col-lg-12">
+    <div class="panel">
+      <div class="panel-heading">
+        Niveles
+      </div>
+      <div class="panel-body">
+        <% unless @levels.empty? %>
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Color</th>
+                <th>Miembros</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @levels.each do |level| %>
+                <tr>
+                  <td>
+                    <%= level.name %>
+                  </td>
+                  <td>
+                    <span class="label" style="background: <%= level.color %>; padding: 5px 30px">
+                      &nbsp;
+                    </span>
+                  </td>
+                  <td>
+                    <%= level.members.count %>
+                  </td>
+                  <td>
+                    <%= link_to edit_level_path(level), class: 'btn btn-sm btn-default' do %>
+                      <i class="fa fa-edit"></i>
+                    <% end %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+          <div class="pull-right">
+            <%= link_to export_levels_path do %>
+              <i class="fa fa-cloud-download"></i>
+              Download
+            <% end %>
+          </div>
+          <div class="text-center">
+            <%= paginate @levels %>
+          </div>
+        <% end %>
+        <%= link_to 'Nuevo Nivel', new_level_path, class: 'btn btn-primary' %>
+      </div>
+    </div>
+  </div>
+</div>

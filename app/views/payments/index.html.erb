@@ -1,0 +1,65 @@
+<div class="row">
+  <div class="col-lg-3">
+    <%= render 'members/nav' %>
+  </div>
+  <div class="col-lg-9">
+    <div class="panel">
+      <div class="panel-heading">
+        Pagos
+      </div>
+      <div class="panel-body">
+        <% unless @payments.empty? %>
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Fecha</th>
+                <th>Cantidad</th>
+                <th>Vencimiento</th>
+                <th>Valor Pendiente</th>
+                <th>Metodo</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @payments.each do |payment| %>
+                <tr>
+                  <td>
+                    <%= l payment.payment_date %>
+                  </td>
+                  <td>
+                    <%= number_to_currency(payment.payment_amount, negative_format: "(%u%n)") %>
+                  </td>
+                  <td>
+                    <%= l payment.due_date %>
+                  </td>
+                  <td>
+                    <%= number_to_currency(payment.amount_due, negative_format: "(%u%n)") %>
+                  </td>
+                  <td>
+                    <%= payment.payment_method.to_s.capitalize %>
+                  </td>
+                  <td>
+                    <%= link_to member_payment_path(@member, payment), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-small btn-danger' do %>
+                      <i class="fa fa-trash-o"></i>
+                    <% end %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+          <div class="pull-right">
+            <%= link_to export_member_payments_path @member do %>
+              <i class="fa fa-cloud-download"></i>
+              Download
+            <% end %>
+          </div>
+          <div class="text-center">
+            <%= paginate @payments %>
+          </div>
+        <% end %>
+        <br/>
+        <%= link_to 'New Payment', new_member_payment_path(@member), class: 'btn btn-primary' %>
+      </div>
+    </div>
+  </div>
+</div>

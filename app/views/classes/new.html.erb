@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="col-lg-12">
+    <div class="panel">
+      <div class="panel-heading">
+        New Class
+      </div>
+      <div class="panel-body">
+        <%= form_for @klass, url: classes_path, html: { class: 'form-horizontal' } do |f| %>
+          <%= render 'layouts/shared/errors', object: @klass %>
+          <div class="form-group">
+            <%= f.label :name, 'Name', class: 'col-lg-2 col-sm-2 control-label' %>
+            <div class="col-lg-10">
+              <%= f.text_field :name, class: 'form-control' %>
+            </div>
+          </div>
+          <div class="form-group">
+            <%= f.label :day_of_week, class: 'col-lg-2 col-sm-2 control-label' %>
+            <div class="col-lg-10">
+              <div class="input-group">
+                <%= f.select :day_of_week, Date::DAYNAMES, selected: Date.current.strftime("%A") %>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <%= f.label :class_time, 'Time', class: 'col-lg-2 col-sm-2 control-label' %>
+            <div class="col-lg-10">
+              <div class="input-group">
+                <%= f.time_select :class_time, {:minute_step => 15, :ampm => true} %>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <%= f.label :recurring, 'Recurring', class: 'col-lg-2 col-sm-2 control-label' %>
+            <div class="col-lg-10">
+              <%= f.check_box :recurring, class: 'check_box' %>
+            </div>
+          </div>
+          <br/>
+          <%= f.submit 'Create Class', class: 'btn btn-primary' %>
+          <%= link_to 'Cancel', classes_path, class: 'btn' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

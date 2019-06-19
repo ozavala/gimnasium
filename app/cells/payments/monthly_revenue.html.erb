@@ -1,0 +1,15 @@
+<div class="col-lg-3">
+  <div class="panel">
+    <div class="symbol terques">
+      <i class="fa fa-usd"></i>
+    </div>
+    <div class="value">
+      <h1>
+        <%= number_to_currency(number_to_human(@revenue, units: { thousand:'K', million: 'M' }), negative_format: "(%u%n)") %>
+      </h1>
+      <p>
+        <%= link_to 'Total Pagos', reports_payments_path %>
+      </p>
+    </div>
+  </div>
+</div>

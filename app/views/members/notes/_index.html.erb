@@ -1,0 +1,28 @@
+<div class="panel">
+  <div class="panel-heading">
+    Notas
+  </div>
+  <div class="panel-body">
+    <% unless @member.notes.empty? %>
+      <table class="table table-hover">
+        <tbody>
+          <thead>
+            <th class="col-lg-10"></th>
+            <th>Fecha</th>
+          </thead>
+          <% @member.notes.each do |note| %>
+            <tr>
+              <td>
+                <%= link_to note.body, edit_member_note_path(@member, note) %>
+              </td>
+              <td>
+                <%= l note.updated_at %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
+    <%= link_to 'Nueva Nota', new_member_note_path(@member), class: 'btn btn-primary' %>
+  </div>
+</div>

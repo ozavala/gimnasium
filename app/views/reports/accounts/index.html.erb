@@ -1,0 +1,71 @@
+<div class="row">
+  <div class="col-lg-12">
+    <div class="panel">
+      <div class="panel-heading">
+        <%= @report.name %>
+        <div class="pull-right">
+          <div class="btn-row">
+            <div class="btn-group">
+              <%= link_to 'All', reports_accounts_path, class: 'btn btn-white' %>
+              <%= link_to 'Up To Date', reports_accounts_path(type: :up_to_date), class: 'btn btn-white' %>
+              <%= link_to 'Due', reports_accounts_path(type: :due), class: 'btn btn-white' %>
+              <%= link_to 'Past Due', reports_accounts_path(type: :past_due), class: 'btn btn-white' %>
+            </div>
+          </div>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+      <div class="panel-body">
+        <% unless @accounts.empty? %>
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Estado</th>
+                <th>Tipo de Membresía</th>
+                <th>Fecha Vencimiento</th>
+                <th>Balance</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @accounts.each do |account| %>
+                <tr>
+                  <td>
+                    <%= link_to account.member.first_name, account.member %>
+                  </td>
+                  <td>
+                    <%= link_to account.member.last_name, account.member %>
+                  </td>
+                  <td>
+                    <span class="label" style="background: <%= account.color %>; padding: 5px 10px">
+                      <%= account.status %>
+                    </span>
+                  </td>
+                  <td>
+                    <%= account.member.membership_type.to_s.capitalize %>
+                  </td>
+                  <td>
+                    <%= l account.payment_due_date %>
+                  </td>
+                  <td>
+                    <%= link_to number_to_currency(account.balance, negative_format: "(%u%n)"), account.member %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+          <div class="pull-right">
+            <%= link_to reports_accounts_export_path do %>
+              <i class="fa fa-cloud-download"></i>
+              Download
+            <% end %>
+          </div>
+          <div class="text-center">
+            <%= paginate @accounts %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

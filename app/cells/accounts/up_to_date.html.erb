@@ -1,0 +1,15 @@
+<div class="col-lg-3">
+  <div class="panel">
+    <div class="symbol blue">
+      <i class="fa fa-check"></i>
+    </div>
+    <div class="value">
+      <h1>
+        <%= @count %>
+      </h1>
+      <p>
+        <%= link_to 'Cuentas Actualizadas'.pluralize(@count), reports_accounts_path(type: :up_to_date) %>
+      </p>
+    </div>
+  </div>
+</div>

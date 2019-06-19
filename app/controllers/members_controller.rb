@@ -17,7 +17,7 @@ class MembersController < ApplicationController
 
   def active
     @members = current_studio.members.active.page params[:page]
-    @title = 'Active Members'
+    @title = 'Miembros Activos'
     render :index
   end
 
@@ -56,13 +56,13 @@ class MembersController < ApplicationController
 
   def destroy
     if @member.destroy
-      redirect_to members_url, flash: { success: 'Member was successfully deleted.' }
+      redirect_to members_url, flash: { success: 'Miembro exitosamente borrado.' }
     end
   end
 
   def destroy_multiple
     if Member.destroy(params[:members])
-      redirect_to members_url, flash: { success: 'Members successfully deleted.' }
+      redirect_to members_url, flash: { success: 'Miembros exitosamente borrados.' }
     else
       redirect_to members_url
     end

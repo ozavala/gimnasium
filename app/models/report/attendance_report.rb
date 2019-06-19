@@ -11,7 +11,7 @@ class Report::AttendanceReport < Report::YearlyReport
   end
 
   def name
-    "#{month_name} Attendance"
+    "#{month_name} Asistencia"
   end
 
   def to_csv

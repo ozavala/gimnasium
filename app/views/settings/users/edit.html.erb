@@ -1,0 +1,59 @@
+<div class="row">
+  <div class="col-lg-12">
+    <div class="panel">
+      <div class="panel-heading">
+        Edit User
+      </div>
+      <div class="panel-body">
+        <%= form_for @user, url: settings_user_path(@user), html: { class: 'form-horizontal' } do |f| %>
+          <%= render 'layouts/shared/errors', object: @user %>
+          <div class="form-group">
+            <%= f.label :first_name, 'Nombre', class: 'col-lg-2 col-sm-2 control-label' %>
+            <div class="col-lg-10">
+              <%= f.text_field :first_name, class: 'form-control' %>
+            </div>
+          </div>
+          <div class="form-group">
+            <%= f.label :last_name, 'Apellido', class: 'col-lg-2 col-sm-2 control-label' %>
+            <div class="col-lg-10">
+              <%= f.text_field :last_name, class: 'form-control' %>
+            </div>
+          </div>
+          <div class="form-group">
+            <%= f.label :phone, class: 'col-lg-2 col-sm-2 control-label' %>
+            <div class="col-lg-10">
+              <%= f.text_field :phone, "placeholder data-mask" => "(999) 999-9999", class: 'form-control' %>
+            </div>
+          </div>
+          <div class="form-group">
+            <%= f.label :email, class: 'col-lg-2 col-sm-2 control-label' %>
+            <div class="col-lg-10">
+              <%= f.email_field :email, class: 'form-control' %>
+            </div>
+          </div>
+          <div class="form-group">
+            <%= f.label :password, class: 'col-lg-2 col-sm-2 control-label' %>
+            <div class="col-lg-10">
+              <%= f.password_field :password, class: 'form-control' %>
+            </div>
+          </div>
+          <div class="form-group">
+            <%= f.label :password_confirmation, 'Confirmación de la Contraseña', class: 'col-lg-2 col-sm-2 control-label' %>
+            <div class="col-lg-10">
+              <%= f.password_field :password_confirmation, class: 'form-control' %>
+            </div>
+          </div>
+          <div class="form-group">
+            <%= f.label :owner, 'Propietario', class: 'col-lg-2 col-sm-2 control-label' %>
+            <div class="col-lg-10">
+              <%= f.check_box :owner, class: 'check_box' %>
+            </div>
+          </div>
+          <br/>
+          <%= f.submit nil, class: 'btn btn-primary' %>
+          <%= link_to 'Cancelar', settings_users_path, class: 'btn' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

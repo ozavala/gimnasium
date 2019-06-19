@@ -7,7 +7,7 @@ module Settings
 
     def update
       if @studio.update_attributes(permitted_params)
-        redirect_to edit_settings_studio_url, flash: { success: 'Studio was successfully updated.' }
+        redirect_to edit_settings_studio_url, flash: { success: 'El gimnasio fue actualizado exitosamente.' }
       else
         render :edit
       end

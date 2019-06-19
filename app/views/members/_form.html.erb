@@ -1,0 +1,136 @@
+<%= form_for @member, html: { class: 'form-horizontal' } do |f| %>
+  <%= render 'layouts/shared/errors', object: @member %>
+  <div class="form-group">
+    <%= f.label :first_name, 'Nombre', class: 'col-lg-2 col-sm-2 control-label' %>
+    <div class="col-lg-10">
+      <%= f.text_field :first_name, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :last_name, 'Apellido', class: 'col-lg-2 col-sm-2 control-label' %>
+    <div class="col-lg-10">
+      <%= f.text_field :last_name, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :street_address, 'Dirección', class: 'col-lg-2 col-sm-2 control-label' %>
+    <div class="col-lg-10">
+      <%= f.text_field :street_address, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :city,'Ciudad:', class: 'col-lg-2 col-sm-2 control-label' %>
+    <div class="col-lg-10">
+      <%= f.text_field :city, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :state,'Provincia', class: 'col-lg-2 col-sm-2 control-label' %>
+    <div class="col-lg-10">
+      <%= f.subregion_select :state, 'EC', include_blank: 'None' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :zip, 'Codigo Postal:', class: 'col-lg-2 col-sm-2 control-label' %>
+    <div class="col-lg-10">
+      <%= f.text_field :zip, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :phone,'Teléfono:', class: 'col-lg-2 col-sm-2 control-label' %>
+    <div class="col-lg-10">
+      <%= f.text_field :phone, "placeholder data-mask" => "(999) 999-9999", class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :email, class: 'col-lg-2 col-sm-2 control-label' %>
+    <div class="col-lg-10">
+      <%= f.email_field :email, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :birthday, 'Cumpleaños', class: 'col-lg-2 col-sm-2 control-label' %>
+    <div class="col-lg-10">
+      <div class="input-group">
+        <span class="input-group-addon">
+          <i class="fa fa-calendar"></i>
+        </span>
+        <%= f.text_field :birthday, "placeholder data-mask" => "99/99/9999", "data-date-format" => "mm/dd/yyyy", class: 'form-control datepicker default-date-picker' %>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :start_date, 'Fecha de Inicio', class: 'col-lg-2 col-sm-2 control-label' %>
+    <div class="col-lg-10">
+      <div class="input-group">
+        <span class="input-group-addon">
+          <i class="fa fa-calendar"></i>
+        </span>
+        <%= f.text_field :start_date, "placeholder data-mask" => "99/99/9999", "data-date-format" => "mm/dd/yyyy", class: 'form-control datepicker default-date-picker' %>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :end_date, 'Fecha de Terminación', class: 'col-lg-2 col-sm-2 control-label' %>
+    <div class="col-lg-10">
+      <div class="input-group">
+        <span class="input-group-addon">
+          <i class="fa fa-calendar"></i>
+        </span>
+        <%= f.text_field :end_date, "placeholder data-mask" => "99/99/9999", "data-date-format" => "mm/dd/yyyy", class: 'form-control datepicker default-date-picker' %>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :membership_type, 'Tipo de Membresía', class: 'col-lg-2 col-sm-2 control-label' %>
+    <div class="col-lg-10">
+      <%= f.select :membership_type, MembershipType.all.collect {|t| [t.to_s.capitalize, t.to_s]} %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :membership_price, 'Valor de la Membresía', class: 'col-lg-2 col-sm-2 control-label' %>
+    <div class="col-lg-10">
+      <div class="input-group">
+        <span class="input-group-addon">$</span>
+        <%= f.text_field :membership_price, class: 'form-control' %>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :source, 'Referencia', class: 'col-lg-2 col-sm-2 control-label' %>
+    <div class="col-lg-10">
+      <%= f.collection_select(:source_id, current_studio.sources, :id, :name, prompt: true) %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :level, 'Nivel', class: 'col-lg-2 col-sm-2 control-label' %>
+    <div class="col-lg-10">
+      <%= f.collection_select(:level_id, current_studio.levels, :id, :name, prompt: true) %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :image, class: 'col-lg-2 col-sm-2 control-label' %>
+    <div class="col-lg-10">
+      <%= f.file_field :image %>
+      <%= f.hidden_field :image_cache %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :remove_image, 'Remover la Imagen', class: 'col-lg-2 col-sm-2 control-label' %>
+    <div class="col-lg-10">
+      <%= f.check_box :remove_image, class: 'check_box' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :active, 'Activo', class: 'col-lg-2 col-sm-2 control-label' %>
+    <div class="col-lg-10">
+      <%= f.check_box :active, class: 'check_box' %>
+    </div>
+  </div>
+  <br/>
+  <%= f.submit 'Actualizar Miembro', class: 'btn btn-primary' %>
+  <% if action?('edit') %>
+    <%= link_to 'Remover Miembro', @member, confirm: 'Are you sure?', method: 'delete', class: 'btn btn-danger' %>
+  <% end %>
+  <%= link_to 'Cancelar', @member, class: 'btn' %>
+<% end %>

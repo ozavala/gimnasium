@@ -1,0 +1,15 @@
+<%= form_for [@source], html: { class: 'form-horizontal' } do |f| %>
+  <%= render 'layouts/shared/errors', object: @source %>
+  <div class="form-group">
+    <%= f.label :name, 'Source', class: 'col-lg-2 col-sm-2 control-label' %>
+    <div class="col-lg-10">
+      <%= f.text_field :name, class: 'form-control' %>
+    </div>
+  </div>
+  <br/>
+  <%= f.submit nil, class: 'btn btn-primary' %>
+  <% if action?('edit') %>
+    <%= link_to 'Eliminar Fuente', [@source], confirm: '¿Está seguro?', method: 'delete', class: 'btn btn-danger' %>
+  <% end %>
+  <%= link_to 'Cancelar', edit_settings_member_path, class: 'btn' %>
+<% end %>

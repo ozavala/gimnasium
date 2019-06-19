@@ -10,7 +10,7 @@ class Report::PaymentReport < Report::YearlyReport
   end
 
   def name
-    "#{month_name} Payments"
+    "#{month_name} Pagos"
   end
 
   def to_csv
@@ -26,4 +26,3 @@ class Report::PaymentReport < Report::YearlyReport
     "#{Date::ABBR_MONTHNAMES[@month].downcase}_payments.csv"
   end
 end
-

@@ -1,0 +1,14 @@
+<%= form_for [@member, @note], html: { class: 'form-horizontal' } do |f| %>
+  <%= render 'layouts/shared/errors', object: @note %>
+  <div class="form-group">
+    <div class="col-lg-10">
+      <%= f.text_area :body, class: 'form-control' %>
+    </div>
+  </div>
+  <br/>
+  <%= f.submit nil, class: 'btn btn-primary' %>
+  <% if action?('edit') %>
+    <%= link_to 'Remover Nota', [@member, @note], confirm: '¿Está seguro?', method: 'delete', class: 'btn btn-danger' %>
+  <% end %>
+  <%= link_to 'Cancel', @member, class: 'btn' %>
+<% end %>

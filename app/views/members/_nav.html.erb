@@ -1,0 +1,43 @@
+<div class="profile-nav">
+  <div class="panel">
+    <div class="user-heading">
+      <div class="round">
+        <% unless @member.image_url.blank? %>
+          <%= link_to @member do %>
+            <%= image_tag @member.image_url.to_s %>
+          <% end %>
+        <% end %>
+      </div>
+      <h1>
+        <%= @member.name %>
+      </h1>
+      <p>
+        <% if @member.phone? %>
+          <p>
+            <%= number_to_phone @member.phone %>
+          </p>
+        <% end %>
+      </p>
+    </div>
+    <ul class="nav nav-pills nav-stacked">
+      <li class="<%= 'active' if controller?('members') || controller?('memberships')  %>">
+        <%= link_to @member do %>
+          <i class="fa fa-user"></i>
+          Perfil
+        <% end %>
+      </li>
+      <li class="<%= 'active' if controller?('attendance')  %>">
+        <%= link_to member_visits_path @member do %>
+          <i class="fa fa-calendar"></i>
+          Asistencia
+        <% end %>
+      </li>
+      <li class="<%= 'active' if controller?('payments')  %>">
+        <%= link_to member_payments_path @member do %>
+          <i class="fa fa-usd"></i>
+          Pagos
+        <% end %>
+      </li>
+    </ul>
+  </div>
+</div>

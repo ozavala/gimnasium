@@ -1,0 +1,43 @@
+<div class="panel">
+  <div class="panel-heading">
+    Referencias
+  </div>
+  <div class="panel-body">
+    <% unless @sources.empty? %>
+      <table class="table table-hover">
+        <tbody>
+          <thead>
+            <th>Referencia</th>
+            <th>Miembros</th>
+            <th>Acciones</th>
+          </thead>
+          <% @sources.each do |source| %>
+            <tr>
+              <td>
+                <%= link_to source.name, edit_source_path(source) %>
+              </td>
+              <td>
+                <%= source.members.count %>
+              </td>
+              <td>
+                <%= link_to edit_source_path(source), class: 'btn btn-sm btn-default' do %>
+                  <i class="fa fa-edit"></i>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <div class="pull-right">
+        <%= link_to export_sources_path do %>
+          <i class="fa fa-cloud-download"></i>
+          Download
+        <% end %>
+      </div>
+      <div class="text-center">
+        <%= paginate @sources %>
+      </div>
+    <% end %>
+    <%= link_to 'Nueva Fuente', new_source_path, class: 'btn btn-primary' %>
+  </div>
+</div>

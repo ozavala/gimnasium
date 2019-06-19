@@ -10,7 +10,7 @@ module Report
       end
 
       def name
-        'New Members'
+        'Nuevos Miembros'
       end
 
       def to_csv

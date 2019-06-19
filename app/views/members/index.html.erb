@@ -1,0 +1,120 @@
+<%= content_for :js do %>
+  <%= javascript_include_tag 'members' %>
+<% end %>
+<div class="panel hidden-xs hidden-sm">
+  <div class="panel-body">
+    <ul class="summary-list">
+      <%= render_cell(:members, :total_count, current_studio) %>
+      <%= render_cell(:members, :recent_count, current_studio) %>
+      <%= render_cell(:members, :birthdays, current_studio) %>
+      <%= render_cell(:members, :active, current_studio) %>
+      <%= render_cell(:members, :inactive, current_studio) %>
+    </ul>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="panel">
+      <div class="panel-heading">
+        <%= @title ||= 'Members' %>
+        <div class="pull-right">
+          <div class="btn-row">
+            <div class="btn-group">
+              <%= link_to 'Todos', members_path, class: 'btn btn-white' %>
+              <%= link_to 'Activos', active_members_path, class: 'btn btn-white' %>
+              <%= link_to 'Inactivos', inactive_members_path, class: 'btn btn-white' %>
+            </div>
+          </div>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+      <div class="panel-body">
+        <% unless @members.empty? %>
+          <%= form_tag destroy_multiple_members_path, method: :delete do %>
+            <div id="flip-scroll">
+              <fieldset>
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th class="hidden-sm hidden-xs">
+                        <input class="checkall" type="<%= :checkbox %>"></input>
+                      </th>
+                      <th>Nombre</th>
+                      <th>Apellido</th>
+                      <th>Estado</th>
+                      <th>Nivel</th>
+                      <th>Cumpleaños</th>
+                      <th>Fecha Inicio</th>
+                      <th>Acciones</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% @members.each do |member| %>
+                      <tr>
+                        <td class="hidden-sm hidden-xs">
+                          <%= check_box_tag 'members[]', member.id, false, id: "member_id_#{member.id}" %>
+                        </td>
+                        <td>
+                          <%= link_to member.first_name, member %>
+                        </td>
+                        <td>
+                          <%= link_to member.last_name, member %>
+                        </td>
+                        <td>
+                          <% unless member.account.nil? %>
+                            <span class="label" style="background: <%= member.account.color %>; padding: 5px 10px">
+                              <%= member.account.status %>
+                            </span>
+                          <% end %>
+                        </td>
+                        <td>
+                          <% unless member.level.nil? %>
+                            <span class="label" style="background: <%= member.level.color %>; padding: 5px 10px">
+                              <%= member.level.name %>
+                            </span>
+                          <% end %>
+                        </td>
+                        <td>
+                          <%= l member.birthday if member.birthday? %>
+                        </td>
+                        <td>
+                          <%= l member.created_at %>
+                        </td>
+                        <td>
+                          <%= link_to new_member_visit_path(member), class: 'btn btn-sm btn-info' do %>
+                            <i class="fa fa-calendar"></i>
+                          <% end %>
+                          <%= link_to new_member_payment_path(member), class: 'btn btn-sm btn-success' do %>
+                            <i class="fa fa-usd"></i>
+                          <% end %>
+                          <%= link_to edit_member_path(member), class: 'btn btn-sm btn-default' do %>
+                            <i class="fa fa-edit"></i>
+                          <% end %>
+                        </td>
+                      </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              </fieldset>
+            </div>
+            <div class="pull-right">
+              <%= link_to export_members_path do %>
+                <i class="fa fa-cloud-download"></i>
+                Download
+              <% end %>
+            </div>
+            <div class="text-center">
+              <%= paginate @members %>
+            </div>
+            <%= link_to 'Nuevo Miembro', new_member_path, class: 'btn btn-primary' %>
+            <%= link_to 'Importar Miembros', new_member_import_path, class: 'btn btn-info hidden-sm hidden-xs' if @members.count > 0 %>
+            <%= submit_tag 'Remover Miembros', class: 'btn btn-danger hidden-sm hidden-xs', data: { confirm: "Are you sure?" } %>
+          <% end %>
+        <% else %>
+          <%= link_to 'New Member', new_member_path, class: 'btn btn-primary' %>
+          <%= link_to 'Import Members', new_member_import_path, class: 'btn btn-info hidden-sm hidden-xs' if @members.count > 0 %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

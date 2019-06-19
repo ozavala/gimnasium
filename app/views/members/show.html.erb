@@ -1,0 +1,123 @@
+<div class="row">
+  <div class="col-lg-3">
+    <%= render 'nav' %>
+  </div>
+  <div class="col-lg-9">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="panel">
+          <div class="panel-heading">
+            Info
+            <%= link_to edit_member_path(@member), class: 'pull-right' do %>
+              <i class="fa fa-edit"></i>
+            <% end %>
+          </div>
+          <div class="panel-body bio-graph-info">
+            <div class="row">
+              <% if @member.email? %>
+                <div class="bio-row">
+                  <p>
+                    <span>Email:</span>
+                    <%= mail_to @member.email %>
+                  </p>
+                </div>
+              <% end %>
+              <% if @member.birthday? %>
+                <div class="bio-row">
+                  <p>
+                    <span>Birthday:</span>
+                    <%= l @member.birthday %>
+                  </p>
+                </div>
+              <% end %>
+              <% if @member.address? %>
+                <div class="bio-row">
+                  <p>
+                    <span>Street Address:</span>
+                    <%= @member.try(:street_address) %>
+                  </p>
+                </div>
+                <div class="bio-row">
+                  <p>
+                    <span>Ciudad:</span>
+                    <%= @member.try(:city) %>
+                  </p>
+                </div>
+                <div class="bio-row">
+                  <p>
+                    <span>Provincia:</span>
+                    <%= @member.try(:state) %>
+                  </p>
+                </div>
+                <div class="bio-row">
+                  <p>
+                    <span>Zip:</span>
+                    <%= @member.try(:zip) %>
+                  </p>
+                </div>
+              <% end %>
+              <% if @member.start_date? %>
+                <div class="bio-row">
+                  <p>
+                    <span>Start Date:</span>
+                    <%= l @member.start_date %>
+                  </p>
+                </div>
+              <% end %>
+              <% if @member.end_date? %>
+                <div class="bio-row">
+                  <p>
+                    <span>End Date:</span>
+                    <%= l @member.end_date %>
+                  </p>
+                </div>
+              <% end %>
+              <div class="bio-row">
+                <p>
+                  <span>Membership Type:</span>
+                  <%= @member.membership_type.to_s.capitalize %>
+                </p>
+              </div>
+              <div class="bio-row">
+                <p>
+                  <span>Membership Price:</span>
+                  <%= number_to_currency @member.membership_price %>
+                </p>
+              </div>
+              <% unless @member.source.nil? %>
+                <div class="bio-row">
+                  <p>
+                    <span>Source:</span>
+                    <%= @member.source.name %>
+                  </p>
+                </div>
+              <% end %>
+              <% unless @member.level.nil? %>
+                <div class="bio-row">
+                  <p>
+                    <span>Level:</span>
+                    <span class="label" style="background: <%= @member.level.color %>">
+                      <%= @member.level.name %>
+                    </span>
+                  </p>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% if @member.account? %>
+      <div class="row">
+        <div class="col-lg-12">
+          <%= render 'accounts/show' %>
+        </div>
+      </div>
+    <% end %>
+    <div class="row">
+      <div class="col-lg-12">
+        <%= render 'members/notes/index' %>
+      </div>
+    </div>
+  </div>
+</div>

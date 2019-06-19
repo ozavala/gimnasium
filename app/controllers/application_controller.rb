@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   Warden::Manager.after_set_user scope: :user do |user, auth, opts|
     if user.studio.nil?
       auth.logout
-      throw(:warden, message: 'Studio not found. Please contact support.')
+      throw(:warden, message: 'No se encontró el gimnasio. Por favor contacte soporte.')
     end
   end
 
