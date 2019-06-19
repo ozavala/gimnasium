@@ -3,8 +3,8 @@ development:
   encoding: unicode
   database: guru
   pool: 5
-  username: guru
-  password:
+  username: railsuser
+  password: railsuser
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -14,13 +14,13 @@ test:
   encoding: unicode
   database: guru_test
   pool: 5
-  username: guru
-  password:
+  username: railsuser
+  password: railsuser
 
 production:
   adapter: postgresql
   encoding: unicode
   database: guru
   pool: 5
-  username: guru
-  password:
+  username: railsuser
+  password: railsuser

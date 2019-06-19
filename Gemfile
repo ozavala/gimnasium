@@ -59,6 +59,9 @@ group :development do
   gem 'foreman'
   gem 'brakeman', require: false
   gem 'pry-rails'
+  gem 'graphviz'
+  gem 'rails-erd'
+  gem 'annotate'
 end
 
 group :test do
@@ -72,6 +75,7 @@ group :test do
   gem 'poltergeist'
   gem 'timecop'
   gem 'fuubar'
+
 end
 
 group :production do
