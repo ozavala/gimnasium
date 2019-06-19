@@ -1,15 +1,15 @@
 <div class="col-lg-4">
   <div class="panel">
     <div class="panel-heading">
-      <%= link_to "#{@today} Classes", classes_path %>
+      <%= link_to "#{@today} Clases", classes_path %>
     </div>
     <div class="panel-body">
       <% unless @klasses.empty? %>
         <table class="table table-hover">
           <thead>
             <tr>
-              <th class="col-lg-9">Name</th>
-              <th>Time</th>
+              <th class="col-lg-9">Nombre</th>
+              <th>Hora</th>
             </tr>
           </thead>
           <tbody>

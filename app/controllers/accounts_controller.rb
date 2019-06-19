@@ -1,11 +1,17 @@
 class AccountsController < ApplicationController
   include AccountRequired
   before_filter :member
-  before_filter :check_account_doesnt_exist, only: [:new, :create]
+  before_filter :check_account_doesnt_exist, only: [:show, :new, :create]
+
+  def show 
+    @account = Account.find(params([:id]))
+  end
 
   def new
     @account = @member.build_account
   end
+
+
 
   def create
     @account = @member.build_account(permitted_params)
