@@ -4,9 +4,9 @@
     <meta/>
     <meta/>
     <meta/>
-    <%= favicon_link_tag 'favicon.ico' %>
+    <%= favicon_link_tag 'favicon-32x32.png' %>
     <title>
-      <%= content_for?(:title) ? yield(:title) : 'StudioJoy' %>
+      <%= content_for?(:title) ? yield(:title) : 'Round One' %>
     </title>
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag 'application' %>
@@ -21,16 +21,17 @@
         </div>
         <!-- logo start
         -->
-        <a class="logo" href="#">
+        <!-- <a class="logo">
           Round One
           <span>
             <i class="fa fa-chevron-right"></i>
-            <%= current_studio.name %>
+            <%#= current_studio.name %>
           </span>
-        </a>
+        </a> -->
         <!-- logo end
         -->
         <%= render 'layouts/shared/header' %>
+        <%= render 'layouts/shared/nav' %>
       </header>
       <!-- header end
       -->

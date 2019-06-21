@@ -16,7 +16,10 @@ body {
     margin: 0px !important;
     font-size:13px;
 }
+.navbar-brand{
+  padding: 0px;
 
+}
 ul li {
     list-style: none;
 }

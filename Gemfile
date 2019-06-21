@@ -1,14 +1,14 @@
 source 'https://rubygems.org'
 ruby '2.1.2'
 
-gem 'rails', '3.2.19'
+gem 'rails', '3.2.21'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'unicorn'
-gem 'nokogiri', '~> 1.6.1'
-gem 'devise', '~> 3.1.0'
+gem 'nokogiri', '~> 1.6.8.1'
+gem 'devise', '~> 3.1.2'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'classy_enum'
@@ -21,14 +21,14 @@ gem 'kaminari'
 #gem 'newrelic_rpm', '~> 3.7.0'
 gem 'cells'
 gem 'sass', '3.2.13'
-gem 'sass-rails', '>= 3.2' # sass-rails needs to be higher than 3.2
+#gem 'sass-rails', '>= 3.2' # sass-rails needs to be higher than 3.2
 gem 'bootstrap-sass', '~> 3.1.0'
 gem 'autoprefixer-rails'
 gem 'jquery-rails', '~> 2.1'
 gem 'jquery-ui-rails'
 gem 'font-awesome-rails', '~> 4.2.0'
 gem 'inherited_resources'
-gem 'pg'
+gem 'pg', '~>1.0'
 #gem 'haml'
 #gem 'haml-rails'
 gem 'activeadmin'
@@ -39,7 +39,10 @@ gem 'routing_concerns'
 gem 'groupdate'
 gem 'hightop'
 gem 'chartkick'
-gem 'faker', '~> 1.4.3'
+gem 'sass-rails',   '~> 3.2.6'
+gem 'coffee-rails', '~> 3.2.2'
+gem 'uglifier',     '>= 1.0.3'
+# gem 'activesupport-json_encoder'
 
 group :development, :test do
   gem 'spring', '~> 1.1.3'
@@ -60,37 +63,33 @@ group :development do
   gem 'foreman'
   gem 'brakeman', require: false
   gem 'pry-rails'
+  gem 'faker', '~> 1.4.3'
   gem 'graphviz'
   gem 'rails-erd'
-  gem 'annotate'
+  #gem 'annotate'
 end
 
-group :test do
-  gem 'factory_girl_rails'
-  gem 'forgery', '0.5.0'
-  gem 'capybara', '~> 2.0.2'
-  gem 'database_cleaner', '~> 0.9.1'
-  gem 'launchy', '~> 2.2.0'
-  gem 'zonebie', '~> 0.5.1'
-  gem 'rspec-cells', '~> 0.1.9'
-  gem 'poltergeist'
-  gem 'timecop'
-  gem 'fuubar'
+# group :test do
+#   gem 'factory_girl_rails'
+#   gem 'forgery', '0.5.0'
+#   gem 'capybara', '~> 2.0.2'
+#   gem 'database_cleaner', '~> 0.9.1'
+#   gem 'launchy', '~> 2.2.0'
+#   gem 'zonebie', '~> 0.5.1'
+#   gem 'rspec-cells', '~> 0.1.9'
+#   gem 'poltergeist'
+#   gem 'timecop'
+#   gem 'fuubar'
+# end
 
-end
-
-group :production do
-  gem 'rails_12factor'
-  gem 'rails_serve_static_assets'
-  gem 'sentry-raven', '~> 0.9.4'
-end
+# group :production do
+#   gem 'rails_12factor'
+#   gem 'rails_serve_static_assets'
+#   gem 'sentry-raven', '~> 0.9.4'
+# end
 
 # Gems used only for assets and not required
 # in production environments by default.
-group :assets do
-  gem 'coffee-rails'
-  gem 'uglifier'
-end
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
