@@ -7,7 +7,7 @@ gem 'rails', '3.2.21'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'unicorn'
-gem 'nokogiri', '~> 1.6.8.1'
+gem 'nokogiri', '~> 1.9.1'
 gem 'devise', '~> 3.1.2'
 gem 'carrierwave'
 gem 'mini_magick'
